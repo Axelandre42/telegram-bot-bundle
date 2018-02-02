@@ -1,0 +1,16 @@
+{
+    "name": "ialert/telegram-bot-bundle",
+    "description": "Telegram Bot Api bundle for symfony",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ialert",
+            "email": "info@ialert.name"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": { "Ialert\\TelegramBotBundle\\": "" }
+    },
+}
