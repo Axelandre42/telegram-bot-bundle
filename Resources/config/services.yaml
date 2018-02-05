@@ -1,0 +1,6 @@
+parameters:
+    ialert_telegram_bot.telegram.class: Ialert\TelegramBotBundle\Telegram\Telegram
+services:
+    ialert_telegram_bot.telegram:
+        class: "%ialert_telegram_bot.telegram.class%"
+        public: true
