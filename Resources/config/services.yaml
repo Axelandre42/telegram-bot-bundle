@@ -1,8 +1,9 @@
 parameters:
-    ialert_telegram_bot.telegram.class: Ialert\TelegramBotBundle\Telegram\Telegram
+    ialert_telegram_bot.telegram.class: Ialert\TelegramBotBundle\Telegram\TelegramApi
     ialert_telegram_bot.command_chain.class: Ialert\TelegramBotBundle\Telegram\Command\CommandChain
 services:
     Ialert\TelegramBotBundle\Telegram\Command\CommandChain: '@ialert_telegram_bot.command_chain'
+    Ialert\TelegramBotBundle\Telegram\TelegramApi: '@ialert_telegram_bot.telegram'
     ialert_telegram_bot.telegram:
         class: "%ialert_telegram_bot.telegram.class%"
         public: true
