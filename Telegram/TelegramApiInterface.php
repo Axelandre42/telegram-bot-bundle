@@ -11,6 +11,7 @@ interface TelegramApiInterface
 {
     /**
      * @param Request $request
+     *
      * @return Response
      */
     public function handleUpdate(Request $request): Response;
