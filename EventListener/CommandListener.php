@@ -32,7 +32,7 @@ class CommandListener
      */
     public function onUpdate(UpdateEvent $event): void
     {
-        if ($message = $event->getUpdate()->getMessage()) {
+        if ($event->getUpdate()->getMessage()) {
             /** @var CommandInterface $command */
             foreach ($this->commandChain->getCommands() as $command) {
                 if (!$command->isApplicable($event)) {
