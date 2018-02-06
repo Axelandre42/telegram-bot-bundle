@@ -3,6 +3,9 @@ parameters:
     ialert_telegram_bot.command_chain.class: Ialert\TelegramBotBundle\Telegram\Command\CommandChain
     ialert_telegram_bot.command_listener.class: Ialert\TelegramBotBundle\EventListener\CommandListener
     ialert_telegram_bot.botapi.class: TelegramBot\Api\BotApi
+    ialert_telegram_bot.console_command.webhook: Ialert\TelegramBotBundle\Command\WebhookCommand
+
+    ialert_telegram_bot.console_command.webhook.name: 'telegram:webhook'
 services:
     Ialert\TelegramBotBundle\Telegram\Command\CommandChain: '@ialert_telegram_bot.command_chain'
     Ialert\TelegramBotBundle\Telegram\TelegramApi: '@ialert_telegram_bot.telegram'
@@ -25,3 +28,10 @@ services:
             - "@ialert_telegram_bot.command_chain"
         tags:
             - { name: kernel.event_listener, event: ialert_telegram_bot.event.update, method: onUpdate }
+    ialert_telegram_bot.console_command.webhook:
+        class: "%ialert_telegram_bot.console_command.webhook%"
+        arguments:
+            - "%ialert_telegram_bot.console_command.webhook.name%"
+            - "@ialert_telegram_bot.botapi"
+        tags:
+            - { name: console.command }
