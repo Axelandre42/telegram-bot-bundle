@@ -1,12 +1,27 @@
 parameters:
     ialert_telegram_bot.telegram.class: Ialert\TelegramBotBundle\Telegram\TelegramApi
     ialert_telegram_bot.command_chain.class: Ialert\TelegramBotBundle\Telegram\Command\CommandChain
+    ialert_telegram_bot.command_listener.class: Ialert\TelegramBotBundle\EventListener\CommandListener
+    ialert_telegram_bot.botapi.class: TelegramBot\Api\BotApi
 services:
     Ialert\TelegramBotBundle\Telegram\Command\CommandChain: '@ialert_telegram_bot.command_chain'
     Ialert\TelegramBotBundle\Telegram\TelegramApi: '@ialert_telegram_bot.telegram'
+    TelegramBot\Api\BotApi: '@ialert_telegram_bot.botapi'
     ialert_telegram_bot.telegram:
         class: "%ialert_telegram_bot.telegram.class%"
+        arguments: ['@event_dispatcher']
         public: true
     ialert_telegram_bot.command_chain:
         class: "%ialert_telegram_bot.command_chain.class%"
         public: true
+    ialert_telegram_bot.botapi:
+        public: true
+        class: '%ialert_telegram_bot.botapi.class%'
+        arguments: ['%ialert_telegram_bot.api.token%']
+    ialert_telegram_bot.command_listener:
+        class: "%ialert_telegram_bot.command_listener.class%"
+        arguments:
+            - "@ialert_telegram_bot.botapi"
+            - "@ialert_telegram_bot.command_chain"
+        tags:
+            - { name: kernel.event_listener, event: ialert_telegram_bot.event.update, method: onUpdate }
