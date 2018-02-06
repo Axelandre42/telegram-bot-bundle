@@ -25,6 +25,11 @@ class Configuration implements ConfigurationInterface
             ->scalarNode('token')->isRequired()->end()
             ->end()
             ->end()
+            ->arrayNode('tracker')->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('token')->isRequired()->end()
+            ->end()
+            ->end()
             ->end();
 
         return $treeBuilder;

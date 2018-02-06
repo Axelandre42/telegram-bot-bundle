@@ -25,5 +25,7 @@ class IalertTelegramBotExtension extends Extension
 
         $container->setParameter('ialert_telegram_bot.api.token', $config['api']['token']);
         $container->setParameter('ialert_telegram_bot.api.username', $config['api']['username']);
+
+        $container->setParameter('ialert_telegram_bot.api.tracker.token', $config['tracker']['token']);
     }
 }

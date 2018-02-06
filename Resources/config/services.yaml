@@ -17,7 +17,7 @@ services:
     ialert_telegram_bot.botapi:
         public: true
         class: '%ialert_telegram_bot.botapi.class%'
-        arguments: ['%ialert_telegram_bot.api.token%']
+        arguments: ['%ialert_telegram_bot.api.token%','%ialert_telegram_bot.api.tracker.token%']
     ialert_telegram_bot.command_listener:
         class: "%ialert_telegram_bot.command_listener.class%"
         arguments:
